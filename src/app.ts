@@ -1,8 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import swaggerUi from 'swagger-ui-express'
-import swaggerDocument from "./config/swagger.json";
+import helmet from "helmet";
 import { Routes } from "./config/routes";
 
 class App {
@@ -19,8 +18,8 @@ class App {
     this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use(bodyParser.json());
     this.app.use(cors());
+    this.app.use(helmet());
     this.app.use(bodyParser());
-    this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   }
 }
 
